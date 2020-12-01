@@ -27,7 +27,7 @@ $(document).ready(function() {
         //get location
         getLocation("init");
         ///set default map
-        opentopo_map();
+        mobileatlas_map();
         windowOpen = "map";
     }, 0);
 
@@ -43,10 +43,10 @@ $(document).ready(function() {
     ////MAPS////////////
     ///////////////////
 
-    function opentopo_map() {
-        tilesUrl = 'https://tile.opentopomap.org/{z}/{x}/{y}.png'
+    function mobileatlas_map() {
+        tilesUrl = 'https://{s}.tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}.png32?apikey=5bd2317851a14fcaa3f0986eb79b8725'
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 17,
+            maxZoom: 22,
             attribution: 'Map data © OpenStreetMap contributors, SRTM, Imagery: © OpenTopoMap (CC-BY-SA)'
         });
         map.addLayer(tilesLayer);
