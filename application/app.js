@@ -47,7 +47,25 @@ $(document).ready(function() {
         tilesUrl = 'https://{s}.tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}.png32?apikey=5bd2317851a14fcaa3f0986eb79b8725'
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
             maxZoom: 22,
-            attribution: 'Map data © OpenStreetMap contributors, SRTM, Imagery: © OpenTopoMap (CC-BY-SA)'
+            attribution: 'Map data © OpenStreetMap contributors, Mobile Atlas: © Thunderforest'
+        });
+        map.addLayer(tilesLayer);
+    }
+    
+    function atlas_map() {
+        tilesUrl = 'https://{s}.tile.thunderforest.com/atlas/{z}/{x}/{y}.png32?apikey=5bd2317851a14fcaa3f0986eb79b8725'
+        tilesLayer = L.tileLayer.fallback(tilesUrl, {
+            maxZoom: 22,
+            attribution: 'Map data © OpenStreetMap contributors, Atlas: © Thunderforest'
+        });
+        map.addLayer(tilesLayer);
+    }
+    
+    function osm_map() {
+        tilesUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        tilesLayer = L.tileLayer.fallback(tilesUrl, {
+            maxZoom: 19,
+            attribution: 'Map data © OpenStreetMap contributors'
         });
         map.addLayer(tilesLayer);
     }
@@ -56,7 +74,7 @@ $(document).ready(function() {
         tilesUrl = 'http://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=99d2594c090c1ee9a8ad525fd7a83f85'
         overlay = L.tileLayer.fallback(tilesUrl, {
             maxZoom: 19,
-            attribution: 'Rain &copy; OpenWeather'
+            attribution: 'Rain © OpenWeather'
         });
         map.addLayer(overlay);
         overlayon = true;
@@ -66,7 +84,7 @@ $(document).ready(function() {
         tilesUrl = 'http://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=99d2594c090c1ee9a8ad525fd7a83f85'
         overlay = L.tileLayer.fallback(tilesUrl, {
             maxZoom: 19,
-            attribution: 'Clouds &copy; OpenWeather'
+            attribution: 'Clouds © OpenWeather'
         });
         map.addLayer(overlay);
         overlayon = true;
@@ -330,67 +348,21 @@ $(document).ready(function() {
                 if (overlayon) {
                     map.removeLayer(overlay)
                 }
-                if (hillshadingon) {
-                    map.removeLayer(overlayshading)
-                }
-                opentopo_map();
+                mobileatlas_map();
                 break;
             case '2':
                 map.removeLayer(tilesLayer)
                 if (overlayon) {
                     map.removeLayer(overlay)
                 }
-                if (hillshadingon) {
-                    map.removeLayer(overlayshading)
-                }
-                hikebike_map();
-                hillshading();
+                atlas_map();
                 break;
             case '3':
                 map.removeLayer(tilesLayer)
                 if (overlayon) {
                     map.removeLayer(overlay)
                 }
-                if (hillshadingon) {
-                    map.removeLayer(overlayshading)
-                }
-                worldimagery_map();
-                break;
-            case '4':
-                if (overlayon) {
-                    map.removeLayer(overlay)
-                }
-                hiking_map();
-                break;
-            case '5':
-                if (overlayon) {
-                    map.removeLayer(overlay)
-                }
-                cycling_map();
-                break;
-            case '6':  
-                if (overlayon) {
-                    map.removeLayer(overlay)
-                }
-                mtb_map();
-                break;
-            case '7':
-                if (overlayon) {
-                    map.removeLayer(overlay)
-                }
-                slopes_map();
-                break;
-            case '8':
-                if (overlayon) {
-                    map.removeLayer(overlay)
-                }
-                riding_map();
-                break;
-            case '9':
-                if (overlayon) {
-                    map.removeLayer(overlay)
-                }
-                skating_map();
+                osm_map();
                 break;
             case '0':
                 if (overlayon) {
