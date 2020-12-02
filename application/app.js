@@ -44,7 +44,7 @@ $(document).ready(function() {
     ///////////////////
 
     function mobileatlas_map() {
-        tilesUrl = 'https://{s}.tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}.jpg70?apikey=5bd2317851a14fcaa3f0986eb79b8725'
+        tilesUrl = 'https://{s}.tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}.png32?apikey=5bd2317851a14fcaa3f0986eb79b8725'
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
             maxZoom: 22,
             attribution: 'Map data © OpenStreetMap contributors, SRTM, Imagery: © OpenTopoMap (CC-BY-SA)'
