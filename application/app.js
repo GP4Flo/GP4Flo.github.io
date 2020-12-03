@@ -64,7 +64,7 @@ $(document).ready(function() {
     function osm_map() {
         tilesUrl = 'http://{s}.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png '
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 19,
+            maxZoom: 20,
             attribution: 'Map data © OpenStreetMap contributors'
         });
         map.addLayer(tilesLayer);
