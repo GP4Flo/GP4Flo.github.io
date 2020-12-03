@@ -65,7 +65,7 @@ $(document).ready(function() {
         tilesUrl = 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
             maxZoom: 19,
-            attribution: 'Map data © OpenStreetMap contributors'
+            attribution: 'Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.'
         });
         map.addLayer(tilesLayer);
     }
