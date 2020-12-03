@@ -62,7 +62,7 @@ $(document).ready(function() {
     }
     
     function osm_map() {
-        tilesUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        tilesUrl = 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
             maxZoom: 19,
             attribution: 'Map data © OpenStreetMap contributors'
