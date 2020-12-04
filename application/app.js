@@ -47,7 +47,7 @@ $(document).ready(function() {
         tilesUrl = 'https://{s}.tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}.png32?apikey=5bd2317851a14fcaa3f0986eb79b8725'
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
             maxZoom: 22,
-            attribution: 'Map data © OpenStreetMap contributors, Mobile Atlas: © Thunderforest'
+            attribution: 'Map data © OpenStreetMap contributors, Mobile Atlas tiles style © Thunderforest'
         });
         map.addLayer(tilesLayer);
     }
@@ -56,7 +56,7 @@ $(document).ready(function() {
         tilesUrl = 'https://{s}.tile.thunderforest.com/atlas/{z}/{x}/{y}.png32?apikey=5bd2317851a14fcaa3f0986eb79b8725'
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
             maxZoom: 22,
-            attribution: 'Map data © OpenStreetMap contributors, Atlas: © Thunderforest'
+            attribution: 'Map data © OpenStreetMap contributors, Atlas tiles style © Thunderforest'
         });
         map.addLayer(tilesLayer);
     }
@@ -65,7 +65,7 @@ $(document).ready(function() {
         tilesUrl = 'http://{s}.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png '
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
             maxZoom: 20,
-            attribution: 'Map data © OpenStreetMap contributors'
+            attribution: 'Map data © OpenStreetMap contributors, Tiles style © Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'
         });
         map.addLayer(tilesLayer);
     }
@@ -76,7 +76,7 @@ $(document).ready(function() {
             minZoom: 2,
 	maxZoom: 19,
 	tileSize: 256,
-            attribution: 'Style: CC-BY-SA 2.0 OpenRailwayMap'
+            attribution: 'Railway style: CC-BY-SA 2.0 OpenRailwayMap'
         });
         map.addLayer(overlay);
         overlayon = true;
