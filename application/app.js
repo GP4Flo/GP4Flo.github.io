@@ -62,7 +62,7 @@ $(document).ready(function() {
     }
     
     function osm_map() {
-        tilesUrl = 'http://{s}.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png '
+        tilesUrl = 'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png '
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
             maxZoom: 20,
             attribution: 'Map data © OpenStreetMap contributors, Tiles style © Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'
@@ -375,6 +375,12 @@ $(document).ready(function() {
                     map.removeLayer(overlay)
                 }
                 osm_map();
+                break;
+            case '4':
+                if (overlayon) {
+                    map.removeLayer(overlay)
+                }
+                railway();
                 break;
             case '0':
                 if (overlayon) {
