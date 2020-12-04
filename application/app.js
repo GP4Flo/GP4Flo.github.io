@@ -69,6 +69,18 @@ $(document).ready(function() {
         });
         map.addLayer(tilesLayer);
     }
+    
+    function railway() {
+        tilesUrl = 'http://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png'
+        overlay = L.tileLayer.fallback(tilesUrl, {
+            minZoom: 2,
+	maxZoom: 19,
+	tileSize: 256,
+            attribution: 'Style: CC-BY-SA 2.0 OpenRailwayMap'
+        });
+        map.addLayer(overlay);
+        overlayon = true;
+    }
 
     function rain() {
         tilesUrl = 'http://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=99d2594c090c1ee9a8ad525fd7a83f85'
