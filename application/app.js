@@ -27,7 +27,7 @@ $(document).ready(function() {
         //get location
         getLocation("init");
         ///set default map
-        mobileatlas_map();
+        osm_map();
         windowOpen = "map";
     }, 0);
 
