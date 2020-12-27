@@ -6,8 +6,8 @@ let current_lat = 0;
 let current_alt;
 let current_heading;
 
-let zoom_level = 14;
-let current_zoom_level = 14;
+let zoom_level = 17;
+let current_zoom_level = 17;
 let myMarker = "";
 let windowOpen = "map";
 
@@ -23,8 +23,27 @@ let marker_latlng = false;
 
 $(document).ready(function() {
 
-navigator.serviceWorker.register('sw.js');
+navigator.serviceWorker.register('assets/js/sw.js');
 	
+    //KaiAds
+    getKaiAd({
+    publisher: '6c03d2e1-0833-4731-aac0-801acfc4eb6e',
+    app: 'fastmap',
+    slot: 'about',
+    test: 0,
+    h: 152,
+    w: 238,
+    container: document.getElementById('ad-container'),
+    onerror: err => console.error('Custom catch:', err),
+    onready: ad => {
+        ad.call('display', {
+            tabindex: 0,
+            navClass: 'items',
+            display: 'block',
+        })
+    }
+});
+
     setTimeout(function() {
         //get location
         getLocation("init");
@@ -32,7 +51,7 @@ navigator.serviceWorker.register('sw.js');
         osm_map();
         windowOpen = "map";
     }, 0);
-	
+
     //leaflet add basic map
     map = L.map('map-container', {
         zoomControl: false,
@@ -46,19 +65,10 @@ navigator.serviceWorker.register('sw.js');
     ///////////////////
 
     function mobileatlas_map() {
-        tilesUrl = 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.png'
-        tilesLayer = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 20,
-            attribution: 'Map data © OpenStreetMap contributors, Mobile Atlas tiles style © Thunderforest'
-        });
-        map.addLayer(tilesLayer);
-    }
-    
-    function atlas_map() {
-        tilesUrl = 'https://{s}.tile.thunderforest.com/atlas/{z}/{x}/{y}.png32?apikey=5bd2317851a14fcaa3f0986eb79b8725'
+        tilesUrl = 'https://{s}.tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}.png32?apikey=5bd2317851a14fcaa3f0986eb79b8725'
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
             maxZoom: 22,
-            attribution: 'Map data © OpenStreetMap contributors, Atlas tiles style © Thunderforest'
+            attribution: 'Map data © OpenStreetMap contributors, Mobile Atlas tiles style © Thunderforest'
         });
         map.addLayer(tilesLayer);
     }
@@ -67,17 +77,16 @@ navigator.serviceWorker.register('sw.js');
         tilesUrl = 'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png '
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
             maxZoom: 20,
-            attribution: 'Map data © OpenStreetMap contributors, Tiles style © Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'
+            attribution: 'Map data © OpenStreetMap contributors, HOT tiles style © Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'
         });
         map.addLayer(tilesLayer);
     }
     
     function railway() {
-        tilesUrl = 'http://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png'
+        tilesUrl = 'https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png'
         overlay = L.tileLayer.fallback(tilesUrl, {
             minZoom: 2,
-	maxZoom: 19,
-	tileSize: 256,
+	        maxZoom: 19,
             attribution: 'Railway style: CC-BY-SA 2.0 OpenRailwayMap'
         });
         map.addLayer(overlay);
@@ -139,7 +148,7 @@ navigator.serviceWorker.register('sw.js');
             current_heading = crd.heading;
             if (option == "init") {
                 myMarker = L.marker([current_lat, current_lng]).addTo(map);
-                map.flyTo(new L.LatLng(current_lat, current_lng), 14, {animate: false});
+                map.flyTo(new L.LatLng(current_lat, current_lng), 17, {animate: false});
                 zoom_speed();
                 return false;
             }
@@ -181,12 +190,14 @@ navigator.serviceWorker.register('sw.js');
         $('div#search-box').find("input").blur();
         $('div#about').css('display', 'block');
         $("div#bottom-bar").css("display", "block");
+	$("div#map-container").css("display", "none");
         windowOpen = "about";
         nav(1);
     }
     function hideAbout() {
         $("div#bottom-bar").css("display", "none");
         $('div#about').css('display', 'none');
+	$("div#map-container").css("display", "block");
         document.activeElement.blur();
         windowOpen = "map";
     }
@@ -322,6 +333,7 @@ navigator.serviceWorker.register('sw.js');
 
     }
 
+
     //////////////////////////////
     ////KEYPAD HANDLER////////////
     //////////////////////////////
@@ -362,23 +374,16 @@ navigator.serviceWorker.register('sw.js');
                 if (overlayon) {
                     map.removeLayer(overlay)
                 }
-                mobileatlas_map();
+                osm_map();
                 break;
             case '2':
                 map.removeLayer(tilesLayer)
                 if (overlayon) {
                     map.removeLayer(overlay)
                 }
-                atlas_map();
+                mobileatlas_map();
                 break;
             case '3':
-                map.removeLayer(tilesLayer)
-                if (overlayon) {
-                    map.removeLayer(overlay)
-                }
-                osm_map();
-                break;
-            case '4':
                 if (overlayon) {
                     map.removeLayer(overlay)
                 }
@@ -570,7 +575,6 @@ navigator.serviceWorker.register('sw.js');
         },
         onSelect: function(suggestion) {
             let lat_lon = [suggestion.data_lat, suggestion.data_lon];
-            addMarker(lat_lon[0], lat_lon[1])
         }
     })
 
