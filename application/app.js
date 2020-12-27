@@ -23,6 +23,9 @@ let marker_latlng = false;
 
 $(document).ready(function() {
 
+navigator.serviceWorker.register('/sw.js', {
+});
+	
     setTimeout(function() {
         //get location
         getLocation("init");
