@@ -23,7 +23,6 @@ let marker_latlng = false;
 
 $(document).ready(function() {
 
-navigator.serviceWorker.register('sw.js');
 
     setTimeout(function() {
         //get location
@@ -555,16 +554,16 @@ navigator.serviceWorker.register('sw.js');
             toaster(JSON.stringify(jqXHR), 2000)
         },
         onSelect: function(suggestion) {
-            let lat_lon = [suggestion.data_lat, suggestion.data_lon];
+		let lat_lon = [suggestion.data_lat, suggestion.data_lon];
+            addMarker(lat_lon[0], lat_lon[1])
         }
     })
 
     //add marker
     function addMarker(lat, lng) {
-        L.marker([lat, lng]).addTo(map);
+	myMarker.setLatLng([lat, lng]).update();
         map.setView([lat, lng], 14);
         current_lat = Number(lat);
         current_lng = Number(lng);
     }
-
 });
