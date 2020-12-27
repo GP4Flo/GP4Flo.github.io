@@ -44,9 +44,9 @@ $(document).ready(function() {
     ///////////////////
 
     function mobileatlas_map() {
-        tilesUrl = 'https://{s}.tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}.png32?apikey=5bd2317851a14fcaa3f0986eb79b8725'
+        tilesUrl = 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.png'
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 22,
+            maxZoom: 20,
             attribution: 'Map data © OpenStreetMap contributors, Mobile Atlas tiles style © Thunderforest'
         });
         map.addLayer(tilesLayer);
