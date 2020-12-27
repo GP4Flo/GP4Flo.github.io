@@ -31,6 +31,8 @@ $(document).ready(function() {
         windowOpen = "map";
     }, 0);
 
+self.addEventListener( "install", event => { self.skipWaiting(); } );
+	
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.open('fastmap').then(function(cache) {
